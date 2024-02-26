@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { faRightLeft } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 const Home = () => {
 
     const currencies=[
@@ -535,7 +537,7 @@ const Home = () => {
                   
       ]
 
-      const [from,setForm]=useState("$myro")
+      const  [from,setForm]=useState("$myro")
       const [to,setTo]=useState("$myro")
       const [amount,setAmount]=useState(1)
       const [isSubmmited,setIsSubmitted]=useState(false)
@@ -551,6 +553,13 @@ const Home = () => {
         setConvertedValue(amount*conversionRate)
       }
 
+     const handleSwap=()=>{
+
+     const aTemp = from
+      const bTemp = to
+      setForm(bTemp) // swap a
+      setTo(aTemp)
+      }
       
     
   return (
@@ -561,10 +570,9 @@ const Home = () => {
 
     <div className='pt-20 text-3xl flex place-content-center'>
 
-      <form className='bg-gray-100 text-left ' onSubmit={handleConverison}>
+      <form className=' text-left ' onSubmit={handleConverison}>
         <div className='flex md:flex-row flex-col'>
 
-        
         <div className='px-10 py-5'>
         <label className='text-green-500  font-bold'>Amount</label>
         <br/>
@@ -583,9 +591,11 @@ const Home = () => {
 
         ))}
         </select>
-
-        </div>
         
+        </div>
+        <button className='px-10 py-5 rounded-full' onClick={handleSwap} >
+        <FontAwesomeIcon  icon={faRightLeft} />
+        </button>
         <div className='px-10 py-5'>
         <label className='text-green-500 font-bold py-2'>To </label>
         <br/>
